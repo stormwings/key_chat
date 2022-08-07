@@ -14,5 +14,16 @@ services:
       - /usr/src/node_modules
     command: npm start
 
+  client:
+    build: ./client/
+    depends_on:
+      - service
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./client:/usr/src
+      - /usr/src/node_modules
+    command: npm start
+
   db:
     image: mongo

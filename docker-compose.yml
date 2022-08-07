@@ -1,0 +1,18 @@
+version: "3.8"
+
+services:
+  service:
+    build: ./service/
+    environment:
+      DB_URL: "mongodb://db:27017/test"
+    depends_on:
+      - db
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./service:/usr/src
+      - /usr/src/node_modules
+    command: npm start
+
+  db:
+    image: mongo
